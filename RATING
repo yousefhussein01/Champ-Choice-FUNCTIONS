@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Link to Google Fonts for Poppins Bold -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .rating-container {
+            width: 200px;
+            height: 200px;
+            background-color: #000147; /* Dark blue */
+            border-radius: 15px; /* Rounded corners */
+            text-align: center; /* Center content horizontally */
+            color: white; /* White text color */
+            font-family: 'Poppins', sans-serif; /* Poppins font family */
+            position: relative; /* Fixed position */
+            top: 20px; /* 20px from the top of the viewport */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust to center */
+        }
+        .star-rating {
+            display: inline-block;
+            font-size: 0; /* Remove space between inline-blocks */
+            padding-top:30px;
+        }
+        .star {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGnQlaqGpfEXajeSyBXex15GTwTEUvG7M2YZk6l9H9tyGLh6_vn0lRLvWISkhee23Vyw9HAZvXN9JCfDUg8LaqIbC60OCapKUaCjcslg3549YpJyNIL6l6Ia2upwqnCd9is5Rb4GSOY8UTGFiQfxI8wGh__1v7OApzGoNAzo9Oy6opOyY21oZbg6qs_tFj/s320/star%20%283%29.png') no-repeat center center;
+            background-size: contain;
+            margin: 0 2px; /* Add space between stars */
+        }
+        .star.filled {
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgb0RRevynI-36L75-tT4vRDEW0WbG_e9UKYmEsTMzQEze6_EjrurzuMVw3rP4aruMG1PMPwar5yNezwdCztkoWsQIDV97pYbkLfyfBXRXcKcxniR3Bj3gT0KQ6JV8cpeOjBbK011dxmmdCKisNgKKDOVuqxbPjxa7_nVFoUhbZyIvRDEkxa3XwqTpqj4mp/s512/star%20%282%29.png');
+        }
+        .score-text {
+            padding-top:30px;
+            padding-bottom:;
+            font-weight: bold; /* Bold text */
+            font-size: 40px;
+        }
+        .overall-score {
+            padding-bottom:40px;
+            font-weight: bold; /* Bold text */
+            font-size: 15px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="rating-container">
+        <div class="score-text" id="score-text"></div>
+        <div class="star-rating" data-rating="4.2">
+            <span class="star filled"></span>
+            <span class="star filled"></span>
+            <span class="star filled"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+        </div>
+        <div class="overall-score">OVERALL SCORE</div>
+    </div>
+
+    <script>
+        function setRating(element, rating) {
+            const stars = element.querySelectorAll('.star');
+            for (let i = 0; i < stars.length; i++) {
+                if (i < rating) {
+                    stars[i].classList.add('filled');
+                } else {
+                    stars[i].classList.remove('filled');
+                }
+            }
+            const scoreText = document.getElementById('score-text');
+            scoreText.textContent = rating + ' / 5';
+        }
+
+        document.querySelectorAll('.star-rating').forEach(starRating => {
+            const rating = parseInt(starRating.getAttribute('data-rating'));
+            setRating(starRating, rating);
+        });
+    </script>
+</body>
+</html>
+
